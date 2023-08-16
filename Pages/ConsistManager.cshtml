@@ -1,7 +1,7 @@
 ﻿@page
 @model DVConsistPlanner.Pages.ConsistManagerModel
 @{
-    ViewData["Title"] = "Consist Manager page";
+    ViewData["Title"] = "Consist Manager";
 }
 
 <head>
@@ -11,18 +11,43 @@
 <div class="text-center">
     <h1 class="display-4">Consist Manager</h1>
     <br />
-    <label>Haul sheet:</label>
+
+    <h3>Locomotive Consist</h3>
+    <table border="1">
+        <tr>
+            <th>Identification</th>
+            <th>Classification</th>
+            <th>Type</th>
+            <th>Mass (t)</th>
+            <th>Length (m)</th>
+            <th>Load Rating (t)</th>
+        </tr>
+        @foreach (DVConsistPlanner.Models.Locomotive loco in Model.Consist.Locomotives)
+        {
+            <tr>
+                <td>@loco.Name</td>
+                <td>@loco.Classification</td>
+                <td>@loco.Type</td>
+                <td>@loco.Mass</td>
+                <td>@loco.Length</td>
+                <td>@loco.LoadRating</td>
+            </tr>
+        }
+    </table>
+    <br />
+
+    <h3>Train Consist</h3>
     <table border="1">
         <tr>
             <th>Job Name</th>
             <th>Departing Station</th>
             <th>Arriving Station</th>
-            <th>Mass</th>
-            <th>Length</th>
+            <th>Mass (t)</th>
+            <th>Length (m)</th>
             <th>Payout</th>
             <th>w/Bonus</th>
         </tr>
-        @foreach (DVConsistPlanner.Models.DerailValley.Job job in Model.Consist.Jobs)
+        @foreach (DVConsistPlanner.Models.Job job in Model.Consist.Jobs)
         {
             <tr>
                 <td>@job.JobName</td>
@@ -36,10 +61,11 @@
         }
     </table>
     <br />
+
     <h1>Totals</h1>
     <table>
         <tr>
-            <th>Total Mass (tons)</th>
+            <th>Total Mass (tonnes)</th>
             <th>Total Length (m)</th>
             <th>Total Payout</th>
             <th>Total Payout (w/Bonus)</th>
@@ -51,4 +77,5 @@
             <td>@String.Format("{0:C2}", Model.Consist.TotalBonusPayout)</td>
         </tr>
     </table>
+
 </div>

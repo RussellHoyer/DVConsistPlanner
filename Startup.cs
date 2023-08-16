@@ -1,3 +1,4 @@
+using DVConsistPlanner.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +25,8 @@ namespace DVConsistPlanner
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddSingleton<IConsistManager, ConsistManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
 [
   {
+    "ID": 0,
     "Name": "Default",
     "Abbreviation": "DF",
     "Services": [
@@ -13,6 +14,7 @@
     ]
   },
   {
+    "ID": 1,
     "Name": "Steel Mill",
     "Abbreviation": "SM",
     "Services": [
@@ -41,6 +43,7 @@
     ]
   },
   {
+    "ID": 2,
     "Name": "Farm",
     "Abbreviation": "FM",
     "Services": [
@@ -63,6 +66,7 @@
     ]
   },
   {
+    "ID": 3,
     "Name": "Food Factory",
     "Abbreviation": "FF",
     "Services": [
@@ -101,6 +105,7 @@
     ]
   },
   {
+    "ID": 4,
     "Name": "Goods Factory and Town",
     "Abbreviation": "GF",
     "Services": [
@@ -135,6 +140,7 @@
     ]
   },
   {
+    "ID": 5,
     "Name": "City South-West",
     "Abbreviation": "CSW",
     "Services": [
@@ -166,6 +172,7 @@
     ]
   },
   {
+    "ID": 6,
     "Name": "Harbor",
     "Abbreviation": "HB",
     "Services": [
@@ -227,6 +234,7 @@
     ]
   },
   {
+    "ID": 7,
     "Name": "Machine Factory and Town",
     "Abbreviation": "MF",
     "Services": [
@@ -264,6 +272,7 @@
     ]
   },
   {
+    "ID": 8,
     "Name": "Coal Mine",
     "Abbreviation": "CM",
     "Services": [
@@ -288,6 +297,7 @@
     ]
   },
   {
+    "ID": 9,
     "Name": "Iron Ore Mine East",
     "Abbreviation": "IME",
     "Services": [
@@ -312,6 +322,7 @@
     ]
   },
   {
+    "ID": 10,
     "Name": "Iron Ore Mine West",
     "Abbreviation": "IMW",
     "Services": [
@@ -333,6 +344,7 @@
     ]
   },
   {
+    "ID": 11,
     "Name": "Forest South",
     "Abbreviation": "FRS",
     "Services": [
@@ -353,6 +365,7 @@
     ]
   },
   {
+    "ID": 12,
     "Name": "Sawmill",
     "Abbreviation": "SW",
     "Services": [
@@ -377,6 +390,7 @@
     ]
   },
   {
+    "ID": 13,
     "Name": "Oil Well North",
     "Abbreviation": "OWN",
     "Services": [
@@ -400,6 +414,7 @@
     ]
   },
   {
+    "ID": 14,
     "Name": "Oil Well Central",
     "Abbreviation": "OWC",
     "Services": [
@@ -422,6 +437,7 @@
     ]
   },
   {
+    "ID": 15,
     "Name": "Military Base",
     "Abbreviation": "MB",
     "Services": [

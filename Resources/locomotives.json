@@ -1,0 +1,62 @@
+[
+  {
+    "ID": 0,
+    "Classification": "DE2",
+    "Name": "DE2:L-000",
+    "Type": "Diesel-Electric",
+    "LicenseCost": 0,
+    "Mass": 38,
+    "Length": 7.49,
+    "LoadRating": 260
+  },
+  {
+    "ID": 1,
+    "Classification": "DE6",
+    "Name": "DE6:L-000",
+    "Type": "Diesel-Electric",
+    "LicenseCost": 200000,
+    "Mass": 125,
+    "Length": 18.78,
+    "LoadRating": 1340
+  },
+  {
+    "ID": 2,
+    "Classification": "DM3",
+    "Name": "DM3:L-000",
+    "Type": "Diesel-Mechanical",
+    "LicenseCost": 30000,
+    "Mass": 52,
+    "Length": 8.5,
+    "LoadRating": 960
+  },
+  {
+    "ID": 3,
+    "Classification": "DH4",
+    "Name": "DH4:L-000",
+    "Type": "Diesel-Hydraulic",
+    "LicenseCost": 50000,
+    "Mass": 80,
+    "Length": 13.0,
+    "LoadRating": 730
+  },
+  {
+    "ID": 4,
+    "Classification": "S060",
+    "Name": "S060:L-000",
+    "Type": "Steam",
+    "LicenseCost": 20000,
+    "Mass": 45,
+    "Length": 9.1,
+    "LoadRating": 500
+  },
+  {
+    "ID": 6,
+    "Classification": "S282",
+    "Name": "S282:L-000",
+    "Type": "Steam",
+    "LicenseCost": 50000,
+    "Mass": 150,
+    "Length": 21.15,
+    "LoadRating": 1100
+  }
+]

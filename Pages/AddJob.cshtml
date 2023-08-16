@@ -8,46 +8,62 @@
     <link rel="stylesheet" href="~/css/tables.css" />
 </head>
 
+<h1>Add a Job</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Job.JobNumber" class="control-label"></label>
+                <input asp-for="Job.JobNumber" class="form-control" />
+                <span asp-validation-for="Job.JobNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.Departing" class="control-label">Departing Station</label>                
+                <select asp-for="DepartingStationAbbrev" asp-items="Model.StationList"></select>
+                <span asp-validation-for="Job.Departing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.Arriving" class="control-label">Arriving Station</label>
+                <select asp-for="ArrivingStationAbbrev" asp-items="Model.StationList"></select>
+                <span asp-validation-for="Job.Arriving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.JobType" class="control-label">Job Type</label>
+                <select asp-for="Job.JobType" asp-items="Html.GetEnumSelectList<Models.JobType>()"></select>
+                <span asp-validation-for="Job.JobType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.Payout" class="control-label"></label>
+                <input asp-for="Job.Payout" class="form-control" />
+                <span asp-validation-for="Job.Payout" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.TrainValue" class="control-label"></label>
+                <input asp-for="Job.TrainValue" class="form-control" />
+                <span asp-validation-for="Job.TrainValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.TrainMass" class="control-label"></label>
+                <input asp-for="Job.TrainMass" class="form-control" />
+                <span asp-validation-for="Job.TrainMass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job.TrainLength" class="control-label"></label>
+                <input asp-for="Job.TrainLength" class="form-control" />
+                <span asp-validation-for="Job.TrainLength" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add Job" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <div>
-    <form method="post">
-        <fieldset>
-            <legend>Add Job</legend>
-            <div>
-                <label for="JobNumber">Job Number:</label>
-                <input type="number" name="JobNumber" value="" />
-            </div>
-            <div>
-                <label for="DepartingStation">Departing Station:</label>
-                <input type="text" name="DepartingStation" value="" />
-            </div>
-            <div>
-                <label for="ArrivingStation">Arriving Station:</label>
-                <input type="text" name="ArrivingStation" value="" />
-            </div>
-            <div>
-                <label for="JobType">Job Type:</label>
-                <input type="text" name="JobType" value="" />
-            </div>
-            <div>
-                <label for="Payout">Payout:</label>
-                <input type="number" name="Payout" value="" />
-            </div>
-            <div>
-                <label for="TrainValue">Train Value:</label>
-                <input type="number" name="TrainValue" value="" />
-            </div>
-            <div>
-                <label for="TrainMass">Train Mass:</label>
-                <input type="number" name="TrainMass" value="" />
-            </div>
-            <div>
-                <label for="TrainLength">Train Length:</label>
-                <input type="number" name="TrainLength" value="" />
-            </div>
-            <div>
-                <label>&nbsp;</label>
-                <input type="submit" value="Submit" class="submit" />
-            </div>
-        </fieldset>
-    </form>
+    <a asp-page="ConsistManager">Back to List</a>
 </div>

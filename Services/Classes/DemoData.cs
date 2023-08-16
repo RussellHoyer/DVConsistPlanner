@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DVConsistPlanner.Models;
 using System.Linq;
-using System.Threading.Tasks;
-using static DVConsistPlanner.Models.DerailValley;
 
-namespace DVConsistPlanner.Models
+namespace DVConsistPlanner.Services
 {
-    public class TestModel
+    internal static class DemoData
     {
-        public Consist GetTestConsist()
+        internal static Consist GetDemoConsist()
         {
+
             /*
             Consist test = new Consist();
             Job logiHaul = new Job
@@ -41,10 +39,13 @@ namespace DVConsistPlanner.Models
                 Weight = 115000
             });
             */
-            Consist test = new Consist();
-            Station currentStation = DerailValley.GetStations().FirstOrDefault(s => s.Abbreviation == "FM");
-            Station foodFactoryStation = DerailValley.GetStations().FirstOrDefault(s => s.Abbreviation == "FF");
-            Station goodsFactoryStation = DerailValley.GetStations().FirstOrDefault(s => s.Abbreviation == "GF");
+            Consist test = new Consist()
+            { 
+                ID = 1
+            };
+            Station currentStation = DerailValleyData.Stations.GetStationByAbbrev("FM");
+            Station foodFactoryStation = DerailValleyData.Stations.GetStationByAbbrev("FF");
+            Station goodsFactoryStation = DerailValleyData.Stations.GetStationByAbbrev("GF");
 
             Job fh09 = new Job()
             {
@@ -97,12 +98,14 @@ namespace DVConsistPlanner.Models
                 TrainLength = 72.18M
             };
 
+            Locomotive dh4 = DerailValleyData.Locomotives.CreateLocomotive("DH4", 36);
 
             test.Jobs.Add(fh09);
             test.Jobs.Add(fh77);
             test.Jobs.Add(fh20);
             test.Jobs.Add(lh95);
             test.Jobs.Add(lh15);
+            test.Locomotives.Add(dh4);
 
             return test;
         }
