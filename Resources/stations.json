@@ -1,0 +1,444 @@
+[
+  {
+    "Name": "Default",
+    "Abbreviation": "DF",
+    "Services": [
+      "None"
+    ],
+    "Tracks": [
+      "TBD"
+    ],
+    "YardLegend": [
+      "A-Overview/Parking"
+    ]
+  },
+  {
+    "Name": "Steel Mill",
+    "Abbreviation": "SM",
+    "Services": [
+      "Diesel",
+      "Coal",
+      "Water",
+      "Repair"
+    ],
+    "Tracks": [
+      "A7L",
+      "A6I",
+      "A5S",
+      "A4S",
+      "A3S",
+      "B1O",
+      "B2O",
+      "B3I",
+      "B4O",
+      "B6O",
+      "B7S",
+      "B8S"
+    ],
+    "YardLegend": [
+      "A-Overview/Parking",
+      "B-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Farm",
+    "Abbreviation": "FM",
+    "Services": [
+      "None"
+    ],
+    "Tracks": [
+      "A1L",
+      "A2L",
+      "A3L",
+      "B1S",
+      "B2L",
+      "B3S",
+      "B5O",
+      "B6O",
+      "B7P"
+    ],
+    "YardLegend": [
+      "A-Overview/Parking",
+      "B-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Food Factory",
+    "Abbreviation": "FF",
+    "Services": [
+      "Diesel",
+      "Repair",
+      "Shop"
+    ],
+    "Tracks": [
+      "A1S",
+      "A2P",
+      "A3P",
+      "B1LP",
+      "B2LP",
+      "B3SP",
+      "B4SP",
+      "B5SP",
+      "C1S",
+      "C2O",
+      "C3O",
+      "C4I",
+      "C5O",
+      "C6I",
+      "C7O",
+      "C8O",
+      "C9S",
+      "D1L",
+      "D2I",
+      "D3S",
+      "D4S"
+    ],
+    "YardLegend": [
+      "A-Overview/Parking",
+      "B-Passenger Station",
+      "C-Transfer Yard",
+      "D-Loading Yard"
+    ]
+  },
+  {
+    "Name": "Goods Factory and Town",
+    "Abbreviation": "GF",
+    "Services": [
+      "Diesel",
+      "Repair",
+      "Water",
+      "Shop"
+    ],
+    "Tracks": [
+      "A2S",
+      "A3S",
+      "A4P",
+      "A5P",
+      "B1L",
+      "B2S",
+      "B3S",
+      "C1SP",
+      "C2LP",
+      "C3LP",
+      "D1S",
+      "D2O",
+      "D3O",
+      "D4O",
+      "D5I",
+      "D6I"
+    ],
+    "YardLegend": [
+      "A-Overview/Parking",
+      "B-Loading Yard",
+      "C-Passenger Station",
+      "D-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "City South-West",
+    "Abbreviation": "CSW",
+    "Services": [
+      "Diesel",
+      "Coal",
+      "Water",
+      "Repair",
+      "Shop"
+    ],
+    "Tracks": [
+      "A1S",
+      "A3S",
+      "B1SP",
+      "B2SP",
+      "B3LP",
+      "B4LP",
+      "B5LP",
+      "B6LP",
+      "C2I",
+      "C3I",
+      "C4S",
+      "C5O",
+      "C6L"
+    ],
+    "YardLegend": [
+      "A-Main",
+      "B-Passenger Station",
+      "C-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Harbor",
+    "Abbreviation": "HB",
+    "Services": [
+      "Diesel",
+      "Coal",
+      "Water",
+      "Repair",
+      "Shop"
+    ],
+    "Tracks": [
+      "A1P",
+      "A2P",
+      "B1L",
+      "B3S",
+      "B4S",
+      "B5O",
+      "B6O",
+      "B7I",
+      "B8O",
+      "C1S",
+      "C2I",
+      "C3L",
+      "D1S",
+      "D2S",
+      "D3O",
+      "D4I",
+      "D5S",
+      "D6O",
+      "D7L",
+      "E1O",
+      "E2O",
+      "E3O",
+      "E4O",
+      "E5O",
+      "E7O",
+      "E8I",
+      "E9I",
+      "E10O",
+      "E11O",
+      "F1LP",
+      "F2LP",
+      "F3SP",
+      "F4SP",
+      "G1S",
+      "G2S",
+      "G3O",
+      "G5I",
+      "G6S",
+      "G7S"
+    ],
+    "YardLegend": [
+      "A-Main",
+      "B-Military Base",
+      "C-Fluid Loading Yard",
+      "D-Crane Loading Yard",
+      "E-Transfer Yard",
+      "F-Passenger Station",
+      "G-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Machine Factory and Town",
+    "Abbreviation": "MF",
+    "Services": [
+      "Diesel",
+      "Coal",
+      "Water",
+      "Repair",
+      "Shop"
+    ],
+    "Tracks": [
+      "A1P",
+      "B1S",
+      "B2O",
+      "B4O",
+      "B5O",
+      "B6S",
+      "C1L",
+      "C2S",
+      "C3I",
+      "C4I",
+      "D1LP",
+      "D2LP",
+      "D4SP",
+      "E1O",
+      "E2S",
+      "E3I",
+      "E4L"
+    ],
+    "YardLegend": [
+      "A-Main",
+      "B-Transfer Yard",
+      "C-Transfer Yard",
+      "D-Passenger Station",
+      "E-Military Base"
+    ]
+  },
+  {
+    "Name": "Coal Mine",
+    "Abbreviation": "CM",
+    "Services": [
+      "Coal",
+      "Water",
+      "Repair"
+    ],
+    "Tracks": [
+      "A1P",
+      "A3L",
+      "B1I",
+      "B2O",
+      "B3O",
+      "B5S",
+      "C1S",
+      "C3S"
+    ],
+    "YardLegend": [
+      "A-Main",
+      "B-Transfer Yard",
+      "C-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Iron Ore Mine East",
+    "Abbreviation": "IME",
+    "Services": [
+      "Coal",
+      "Water",
+      "Repair"
+    ],
+    "Tracks": [
+      "A2P",
+      "A1L",
+      "B1S",
+      "B2O",
+      "B4O",
+      "C1S",
+      "C3O",
+      "C4I"
+    ],
+    "YardLegend": [
+      "A-Main",
+      "B-Transfer Yard",
+      "C-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Iron Ore Mine West",
+    "Abbreviation": "IMW",
+    "Services": [
+      "Coal",
+      "Water",
+      "Repair"
+    ],
+    "Tracks": [
+      "B1S",
+      "B2I",
+      "B3O",
+      "B4O",
+      "B6O",
+      "B7S",
+      "B8L"
+    ],
+    "YardLegend": [
+      "B-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Forest South",
+    "Abbreviation": "FRS",
+    "Services": [
+      "None"
+    ],
+    "Tracks": [
+      "A1P",
+      "B1L",
+      "B2O",
+      "B3O",
+      "B5O",
+      "B6S",
+      "B7S"
+    ],
+    "YardLegend": [
+      "A-Overview/Parking",
+      "B-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Sawmill",
+    "Abbreviation": "SW",
+    "Services": [
+      "Coal",
+      "Water",
+      "Repair"
+    ],
+    "Tracks": [
+      "A1P",
+      "A2P",
+      "B1S",
+      "B3I",
+      "B4L",
+      "C1O",
+      "C3I",
+      "C4S"
+    ],
+    "YardLegend": [
+      "A-Overview/Parking",
+      "B-Loading Yard",
+      "C-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Oil Well North",
+    "Abbreviation": "OWN",
+    "Services": [
+      "Diesel",
+      "Repair"
+    ],
+    "Tracks": [
+      "A1P",
+      "B2S",
+      "B3O",
+      "B4O",
+      "B5O",
+      "B6L",
+      "C1S",
+      "C3O"
+    ],
+    "YardLegend": [
+      "A-Overview/Parking",
+      "B-Transfer Yard",
+      "C-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Oil Well Central",
+    "Abbreviation": "OWC",
+    "Services": [
+      "Diesel",
+      "Repair"
+    ],
+    "Tracks": [
+      "A1L",
+      "A2S",
+      "A3S",
+      "B1O",
+      "B3O",
+      "B4O",
+      "B5O",
+      "B6S"
+    ],
+    "YardLegend": [
+      "A-Overview/Parking",
+      "B-Transfer Yard"
+    ]
+  },
+  {
+    "Name": "Military Base",
+    "Abbreviation": "MB",
+    "Services": [
+      "None"
+    ],
+    "Tracks": [
+      "A1L",
+      "A2S",
+      "B2O",
+      "B3O",
+      "B4I",
+      "B5O",
+      "B6S"
+    ],
+    "YardLegend": [
+      "A-Overview/Parking",
+      "B-Transfer Yard"
+    ]
+  }
+]

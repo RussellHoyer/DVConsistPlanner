@@ -1,0 +1,53 @@
+﻿@page
+@model DVConsistPlanner.Pages.AddJobModel
+@{
+    ViewData["Title"] = "Add new Job";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/tables.css" />
+</head>
+
+<div>
+    <form method="post">
+        <fieldset>
+            <legend>Add Job</legend>
+            <div>
+                <label for="JobNumber">Job Number:</label>
+                <input type="number" name="JobNumber" value="" />
+            </div>
+            <div>
+                <label for="DepartingStation">Departing Station:</label>
+                <input type="text" name="DepartingStation" value="" />
+            </div>
+            <div>
+                <label for="ArrivingStation">Arriving Station:</label>
+                <input type="text" name="ArrivingStation" value="" />
+            </div>
+            <div>
+                <label for="JobType">Job Type:</label>
+                <input type="text" name="JobType" value="" />
+            </div>
+            <div>
+                <label for="Payout">Payout:</label>
+                <input type="number" name="Payout" value="" />
+            </div>
+            <div>
+                <label for="TrainValue">Train Value:</label>
+                <input type="number" name="TrainValue" value="" />
+            </div>
+            <div>
+                <label for="TrainMass">Train Mass:</label>
+                <input type="number" name="TrainMass" value="" />
+            </div>
+            <div>
+                <label for="TrainLength">Train Length:</label>
+                <input type="number" name="TrainLength" value="" />
+            </div>
+            <div>
+                <label>&nbsp;</label>
+                <input type="submit" value="Submit" class="submit" />
+            </div>
+        </fieldset>
+    </form>
+</div>

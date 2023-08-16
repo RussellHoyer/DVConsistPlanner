@@ -1,0 +1,54 @@
+﻿@page
+@model DVConsistPlanner.Pages.ConsistManagerModel
+@{
+    ViewData["Title"] = "Consist Manager page";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/tables.css" />
+</head>
+
+<div class="text-center">
+    <h1 class="display-4">Consist Manager</h1>
+    <br />
+    <label>Haul sheet:</label>
+    <table border="1">
+        <tr>
+            <th>Job Name</th>
+            <th>Departing Station</th>
+            <th>Arriving Station</th>
+            <th>Mass</th>
+            <th>Length</th>
+            <th>Payout</th>
+            <th>w/Bonus</th>
+        </tr>
+        @foreach (DVConsistPlanner.Models.DerailValley.Job job in Model.Consist.Jobs)
+        {
+            <tr>
+                <td>@job.JobName</td>
+                <td>@job.Departing.Name</td>
+                <td>@job.Arriving.Name</td>
+                <td>@job.TrainMass</td>
+                <td>@job.TrainLength</td>
+                <td>@String.Format("{0:C2}", job.Payout)</td>
+                <td>@String.Format("{0:C2}", job.BonusPayout)</td>
+            </tr>
+        }
+    </table>
+    <br />
+    <h1>Totals</h1>
+    <table>
+        <tr>
+            <th>Total Mass (tons)</th>
+            <th>Total Length (m)</th>
+            <th>Total Payout</th>
+            <th>Total Payout (w/Bonus)</th>
+        </tr>
+        <tr>
+            <td>@Model.Consist.TotalTonnage</td>
+            <td>@Model.Consist.TotalLength</td>
+            <td>@String.Format("{0:C2}", Model.Consist.TotalPayout)</td>
+            <td>@String.Format("{0:C2}", Model.Consist.TotalBonusPayout)</td>
+        </tr>
+    </table>
+</div>
