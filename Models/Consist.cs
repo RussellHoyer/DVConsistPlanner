@@ -15,6 +15,7 @@ namespace DVConsistPlanner.Models
         }
 
         public int ID { get; set; }
+
         public List<Job> Jobs { get; set; }
         public List<Locomotive> Locomotives { get; set; }
 

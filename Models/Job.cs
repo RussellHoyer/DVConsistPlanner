@@ -7,7 +7,7 @@ namespace DVConsistPlanner.Models
     {
         public Job()
         {
-            LicenseRequirements = new List<object>();
+            LicenseRequirements = new List<License>();
         }
         #region Properties
         
@@ -58,9 +58,9 @@ namespace DVConsistPlanner.Models
         /// </summary>
         public decimal TrainLength { get; set; }
         /// <summary>
-        /// NOT YET IMPLEMENTED
+        /// The license requirements of the job.
         /// </summary>
-        public List<object> LicenseRequirements { get; set; }
+        public List<License> LicenseRequirements { get; set; }
         #endregion
         #region Fields
         /// <summary>

@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DVConsistPlanner.Models
 {
@@ -9,8 +8,11 @@ namespace DVConsistPlanner.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Abbreviation { get; set; }
+        [NotMapped]
         public List<string> Services { get; set; }
+        [NotMapped]
         public List<string> Tracks { get; set; }
+        [NotMapped]
         public List<string> YardLegend { get; set; }
     }
 }
