@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace DVConsistPlanner.Models
@@ -66,10 +67,12 @@ namespace DVConsistPlanner.Models
         /// <summary>
         /// The abbreviated name of the job (what you see in your toolbelt).
         /// </summary>
+        [NotMapped]
         public string JobName { get { return $"{Departing.Abbreviation}-{GetJobAbbreviation(JobType)}-{JobNumber:D2}"; } }
         /// <summary>
         /// The total payout including the bonus for completing the job before the time is up.
         /// </summary>
+        [NotMapped]
         public int BonusPayout { get { return (int)(Payout * 1.5); } }
         #endregion
         public static string GetJobAbbreviation(JobType jobType)

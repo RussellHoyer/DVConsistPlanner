@@ -1,4 +1,7 @@
-﻿namespace DVConsistPlanner.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DVConsistPlanner.Models
 {
     public class Locomotive
     {
@@ -13,6 +16,7 @@
         /// <summary>
         /// Index identification.
         /// </summary>
+        [Key]
         public int ID { get; set; }
         /// <summary>
         /// The ID number (specifically) for the loco.
@@ -22,10 +26,6 @@
         /// Classification of the locotmotive (i.e. DE2, DE6, etc).
         /// </summary>
         public string Classification { get; set; }
-        /// <summary>
-        /// The display name for the locomotive.
-        /// </summary>
-        public string Name => $"L-{LocoNumber:D3}";
         /// <summary>
         /// Tractive effort type.
         /// </summary>
@@ -46,5 +46,11 @@
         /// How much pulling power the locomotive has, in tonnes.
         /// </summary>
         public int LoadRating { get; set; }
+
+        /// <summary>
+        /// The display name for the locomotive.
+        /// </summary>
+        [NotMapped]
+        public string Name => $"L-{LocoNumber:D3}";
     }
 }

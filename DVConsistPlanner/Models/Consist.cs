@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace DVConsistPlanner.Models
@@ -13,24 +15,28 @@ namespace DVConsistPlanner.Models
             Jobs = new List<Job>();
             Locomotives = new List<Locomotive>();
         }
-
+        [Key]
         public int ID { get; set; }
 
         public List<Job> Jobs { get; set; }
         public List<Locomotive> Locomotives { get; set; }
 
+        [NotMapped]
         public decimal TotalTonnage
         {
             get { return Jobs.Select(x => x.TrainMass).Sum(); }
         }
+        [NotMapped]
         public decimal TotalLength
         {
             get { return Jobs.Select(x => x.TrainLength).Sum(); }
         }
+        [NotMapped]
         public int TotalPayout
         {
             get { return Jobs.Select(x => x.Payout).Sum(); }
         }
+        [NotMapped]
         public int TotalBonusPayout
         {
             get { return (int)(TotalPayout * 1.5); }
