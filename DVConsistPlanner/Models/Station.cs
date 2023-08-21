@@ -22,17 +22,14 @@ namespace DVConsistPlanner.Models
         /// <summary>
         /// Services available at this station.
         /// </summary>
-        [NotMapped]
-        public List<string> Services { get; set; }
+        public ICollection<string> Services { get; set; }
         /// <summary>
         /// Track names located at this station.
         /// </summary>
-        [NotMapped]
-        public List<string> Tracks { get; set; }
+        public ICollection<string> Tracks { get; set; }
         /// <summary>
         /// Yard descriptions.
         /// </summary>
-        [NotMapped]
-        public List<string> YardLegend { get; set; }
+        public ICollection<string> YardLegend { get; set; }
     }
 }

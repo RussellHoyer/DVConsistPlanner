@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -18,25 +19,23 @@ namespace DVConsistPlanner.Models
         [Key]
         public int ID { get; set; }
 
-        public List<Job> Jobs { get; set; }
-        public List<Locomotive> Locomotives { get; set; }
+        public ICollection<Job> Jobs { get; set; }
+        public ICollection<Locomotive> Locomotives { get; set; }
 
-        [NotMapped]
+        [Precision(18,2)]
         public decimal TotalTonnage
         {
             get { return Jobs.Select(x => x.TrainMass).Sum(); }
         }
-        [NotMapped]
+        [Precision(18, 2)]
         public decimal TotalLength
         {
             get { return Jobs.Select(x => x.TrainLength).Sum(); }
         }
-        [NotMapped]
         public int TotalPayout
         {
             get { return Jobs.Select(x => x.Payout).Sum(); }
-        }
-        [NotMapped]
+        }        
         public int TotalBonusPayout
         {
             get { return (int)(TotalPayout * 1.5); }

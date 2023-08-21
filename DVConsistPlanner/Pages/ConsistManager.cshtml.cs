@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DVConsistPlanner.Contexts;
 using DVConsistPlanner.Models;
 using DVConsistPlanner.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +17,13 @@ namespace DVConsistPlanner.Pages
 
         public Consist Consist;
         IConsistManager _consistManager;
+        DVCPContext _context;
 
-        public ConsistManagerModel(ILogger<ConsistManagerModel> logger, IConsistManager consistManager)
+        public ConsistManagerModel(ILogger<ConsistManagerModel> logger, IConsistManager consistManager, DVCPContext dVCPContext)
         {
             _logger = logger;
             _consistManager = consistManager;
+            _context = dVCPContext;
         }
 
         public void OnGet()

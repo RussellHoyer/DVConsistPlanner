@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
@@ -16,6 +18,15 @@ namespace DVConsistPlanner.Models
         /// Index identifier.
         /// </summary>
         public int ID { get; set; }
+        /// <summary>
+        /// The ID of the <see cref="Consist"/> that this <see cref="Job"/> is part of.
+        /// </summary>
+        [ForeignKey(nameof(Consist.ID))]
+        public int? ConsistID { get; set; }
+        /// <summary>
+        /// Represents whether the job is in an active state or not (i.e. Accepted in the Job Validator).
+        /// </summary>
+        public bool IsActive { get; set; }
         /// <summary>
         /// The departing station, the origin of the cargo to be transported.
         /// </summary>
@@ -49,45 +60,39 @@ namespace DVConsistPlanner.Models
         /// <summary>
         /// The value of the cars in this job, represented in Millions.
         /// </summary>
+        [Precision(18, 2)]
         public decimal TrainValue { get; set; }
         /// <summary>
         /// The total mass of the cars in this job.
         /// </summary>
+        [Precision(18, 2)]
         public decimal TrainMass { get; set; }
         /// <summary>
         /// The total length of all cars in the job.
         /// </summary>
+        [Precision(18, 2)]
         public decimal TrainLength { get; set; }
         /// <summary>
         /// The license requirements of the job.
         /// </summary>
-        public List<License> LicenseRequirements { get; set; }
+        public ICollection<License> LicenseRequirements { get; set; }
         #endregion
         #region Fields
         /// <summary>
         /// The abbreviated name of the job (what you see in your toolbelt).
         /// </summary>
         [NotMapped]
-        public string JobName { get { return $"{Departing.Abbreviation}-{GetJobAbbreviation(JobType)}-{JobNumber:D2}"; } }
+        public string JobName { get { return $"{Departing.Abbreviation}-{JobType.GetJobTypeAbbrev()}-{JobNumber:D2}"; } }
         /// <summary>
         /// The total payout including the bonus for completing the job before the time is up.
         /// </summary>
         [NotMapped]
         public int BonusPayout { get { return (int)(Payout * 1.5); } }
         #endregion
-        public static string GetJobAbbreviation(JobType jobType)
-        {
-            string result = jobType switch
-            {
-                JobType.Logistic => "LH",
-                JobType.Freight => "FH",
-                JobType.ShuntingLoad => "SL",
-                JobType.ShuntingUnload => "SU",
-                _ => "",
-            };
-            return result;
-        }
     }
+    /// <summary>
+    /// The types of jobs available.
+    /// </summary>
     public enum JobType
     {
         Logistic = 0,
@@ -98,9 +103,32 @@ namespace DVConsistPlanner.Models
     // Job specific extensions
     public static partial class Extensions
     {
+        /// <summary>
+        /// Tries to get a <see cref="Job"/> from the collection, returns null if not found.
+        /// </summary>
+        /// <param name="jobList"></param>
+        /// <param name="jobNumber"></param>
+        /// <returns>Returns the desired <see cref="Job"/> if found, otherwise returns null.</returns>
         public static Job? GetJob(this List<Job> jobList, int jobNumber)
         {
-            return jobList.FirstOrDefault(j => j.JobNumber == jobNumber);
+            return jobList.FirstOrDefault(j => j.JobNumber == jobNumber) ?? null;
+        }
+        /// <summary>
+        /// Gets the abbreviation for the <see cref="JobType"/> (usually to be used for display purposes).
+        /// </summary>
+        /// <param name="jobType"></param>
+        /// <returns>Returns a two letter abbrevation representing the <see cref="JobType"/>.</returns>
+        public static string GetJobTypeAbbrev(this JobType jobType)
+        {
+            string result = jobType switch
+            {
+                JobType.Logistic => "LH",
+                JobType.Freight => "FH",
+                JobType.ShuntingLoad => "SL",
+                JobType.ShuntingUnload => "SU",
+                _ => "",
+            };
+            return result;
         }
     }
 }

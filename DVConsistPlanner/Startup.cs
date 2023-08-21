@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using DVConsistPlanner.Contexts;
 
 namespace DVConsistPlanner
 {
@@ -29,7 +30,7 @@ namespace DVConsistPlanner
 
             services.AddSingleton<IConsistManager, ConsistManager>();
 
-            //services.AddDbContext<DVConsistPlannerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DVConsistPlannerContext")));
+            services.AddDbContext<DVCPContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DVCPContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

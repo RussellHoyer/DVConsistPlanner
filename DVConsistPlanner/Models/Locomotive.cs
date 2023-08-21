@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DVConsistPlanner.Models
@@ -18,6 +19,11 @@ namespace DVConsistPlanner.Models
         /// </summary>
         [Key]
         public int ID { get; set; }
+        /// <summary>
+        /// The ID of the <see cref="Consist"/> that this <see cref="Locomotive"/> is part of.
+        /// </summary>
+        [ForeignKey(nameof(Consist.ID))]
+        public int? ConsistID { get; set; }
         /// <summary>
         /// The ID number (specifically) for the loco.
         /// </summary>
@@ -41,6 +47,7 @@ namespace DVConsistPlanner.Models
         /// <summary>
         /// Length in meters.
         /// </summary>
+        [Precision(18, 2)]
         public decimal Length { get; set; }
         /// <summary>
         /// How much pulling power the locomotive has, in tonnes.

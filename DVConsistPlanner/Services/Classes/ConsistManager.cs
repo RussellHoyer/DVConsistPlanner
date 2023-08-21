@@ -58,11 +58,12 @@ namespace DVConsistPlanner.Services
 
         public void AddJob(Job job)
         {
-            if (ActiveConsist.Jobs.GetJob(job.JobNumber) != null)
-            {
-                _logger.LogWarning("Job is already in the collection.");
-            }
-            ActiveConsist.Jobs.Add(job);
+            throw new System.NotImplementedException();
+            //if (ActiveConsist.Jobs.GetJob(job.JobNumber) != null)
+            //{
+            //    _logger.LogWarning("Job is already in the collection.");
+            //}
+            //ActiveConsist.Jobs.Add(job);
         }
         public void RemoveJob(int jobNumber)
         {
