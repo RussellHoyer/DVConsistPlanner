@@ -1,6 +1,9 @@
 ﻿using DVConsistPlanner.Models;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace DVConsistPlanner.Services
@@ -39,6 +42,14 @@ namespace DVConsistPlanner.Services
         public void UpdateConsist(int id, Consist consist)
         {
             Consist updatingConsist = _activeConsists.GetConsistById(id);
+            if (updatingConsist != null)
+            {
+                
+            }
+            else
+            {
+                _activeConsists.Add(consist);
+            }
         }
 
         public Consist GetConsist(int id)
@@ -47,9 +58,27 @@ namespace DVConsistPlanner.Services
         }
         public IEnumerable<Consist> GetConsists()
         {
-            _activeConsists.Add(DemoData.GetDemoConsist());
+            //_activeConsists.Add(DemoData.GetDemoConsist());
+            _activeConsists.Add(LoadConsists());
             SelectActiveConsist(_activeConsists[0].ID);
             return _activeConsists;
+        }
+
+        private Consist LoadConsists()
+        {
+            Consist output = new Consist();
+            string filePath = Path.Combine(Environment.CurrentDirectory, "consists.json");
+            if (!File.Exists(filePath))
+            {
+                // if the file doesn't exist, create it
+                var jsonData = JsonConvert.SerializeObject(output);
+                File.WriteAllText(filePath, jsonData);
+            }
+            // we know the file exists
+            var consistData = File.ReadAllText(filePath);
+            output = JsonConvert.DeserializeObject<Consist>(consistData);
+
+            return output;
         }
 
         #endregion
