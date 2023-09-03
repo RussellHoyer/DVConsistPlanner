@@ -8,18 +8,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DVConsistPlanner.Pages
+namespace DVConsistPlanner.Pages.Jobs
 {
-    public class AddJobModel : PageModel
+    public class EditJobModel : PageModel
     {
-        private readonly ILogger<ConsistManagerModel> _logger;
+        private readonly ILogger<EditJobModel> _logger;
         IConsistManager _consistManager;
 
-        public AddJobModel(ILogger<ConsistManagerModel> logger, IConsistManager consistManager)
+        public EditJobModel(ILogger<EditJobModel> logger, IConsistManager consistManager)
         {
             _logger = logger;
             _consistManager = consistManager;
-            Job = new Job();
         }
 
         [BindProperty]
@@ -32,17 +31,32 @@ namespace DVConsistPlanner.Pages
         public List<SelectListItem> StationList { get; set; }
         public List<SelectListItem> JobTypeList { get; set; }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (id == null || _consistManager.ActiveConsist == null)
+            {
+                return NotFound();
+            }
             StationList = DerailValleyData.Stations.GetStationList().Select(
                 s => new SelectListItem
                 {
                     Value = s.Abbreviation,
                     Text = s.Name
                 }).ToList();
+
+            var editingJob = _consistManager.GetJob((int)id);
+            if (editingJob == null)
+            {
+                return NotFound();
+            }
+            Job = editingJob;
+            DepartingStationAbbrev = Job.Departing.Abbreviation;
+            ArrivingStationAbbrev = Job.Arriving.Abbreviation;
+
+            return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid || Job == null)
             {
@@ -52,10 +66,9 @@ namespace DVConsistPlanner.Pages
             Job.Departing = DerailValleyData.Stations.GetStationByAbbrev(DepartingStationAbbrev);
             Job.Arriving = DerailValleyData.Stations.GetStationByAbbrev(ArrivingStationAbbrev);
 
-            _consistManager.AddJob(Job);
+            _consistManager.UpdateJob(Job);
 
-            return RedirectToPage("./ConsistManager");
-
+            return RedirectToPage("../ConsistManager");
         }
     }
 }

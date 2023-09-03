@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DVConsistPlanner.Contexts;
+using DVConsistPlanner.Services.Classes;
 
 namespace DVConsistPlanner
 {
@@ -29,8 +30,9 @@ namespace DVConsistPlanner
             services.AddRazorPages();
 
             services.AddSingleton<IConsistManager, ConsistManager>();
+            services.AddTransient<IDataHandler, FileDataLoader>();
 
-            services.AddDbContext<DVCPContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DVCPContext")));
+            //services.AddDbContext<DVCPContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DVCPContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

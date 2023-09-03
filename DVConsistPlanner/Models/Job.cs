@@ -33,14 +33,14 @@ namespace DVConsistPlanner.Models
         /// <remarks>
         /// This is usually the station displayed on the top of the card.
         /// </remarks>
-        public Station Departing { get; set; }
+        public Station Departing { get; set; } = new Station();
         /// <summary>
         /// The arriving station, the destination for the cargo being transported.
         /// </summary>
         /// <remarks>
         /// This is usually the station displayed on the bottom of the card.
         /// </remarks>
-        public Station Arriving { get; set; }
+        public Station Arriving { get; set; } = new Station();
         /// <summary>
         /// The defintion of the kind of transport taking place.
         /// </summary>
@@ -89,6 +89,26 @@ namespace DVConsistPlanner.Models
         [NotMapped]
         public int BonusPayout { get { return (int)(Payout * 1.5); } }
         #endregion
+        /// <summary>
+        /// Update this job with the supplied parameter.
+        /// </summary>
+        /// <remarks>Updates all properties except for <see cref="ID"/></remarks>
+        /// <param name="job"></param>
+        public void Update(Job job)
+        {
+            ConsistID = job.ConsistID;
+            IsActive = job.IsActive;
+            Departing = job.Departing;
+            Arriving = job.Arriving;
+            JobType = job.JobType;
+            JobNumber = job.JobNumber;
+            Payout = job.Payout;
+            TimeBonus = job.TimeBonus;
+            TrainValue = job.TrainValue;
+            TrainMass = job.TrainMass;
+            TrainLength = job.TrainLength;
+            LicenseRequirements = job.LicenseRequirements;
+        }
     }
     /// <summary>
     /// The types of jobs available.
@@ -107,11 +127,11 @@ namespace DVConsistPlanner.Models
         /// Tries to get a <see cref="Job"/> from the collection, returns null if not found.
         /// </summary>
         /// <param name="jobList"></param>
-        /// <param name="jobNumber"></param>
+        /// <param name="id"></param>
         /// <returns>Returns the desired <see cref="Job"/> if found, otherwise returns null.</returns>
-        public static Job? GetJob(this List<Job> jobList, int jobNumber)
+        public static Job? GetJob(this List<Job> jobList, int id)
         {
-            return jobList.FirstOrDefault(j => j.JobNumber == jobNumber) ?? null;
+            return jobList.FirstOrDefault(j => j.ID == id);
         }
         /// <summary>
         /// Gets the abbreviation for the <see cref="JobType"/> (usually to be used for display purposes).
@@ -129,6 +149,18 @@ namespace DVConsistPlanner.Models
                 _ => "",
             };
             return result;
+        }
+        public static decimal GetTotalTonnage(this List<Job> jobs)
+        {
+            return jobs.Select(x => x.TrainMass).Sum();
+        }
+        public static decimal GetTotalLength(this List<Job> jobs)
+        {
+            return jobs.Select(x => x.TrainLength).Sum();
+        }
+        public static int GetTotalPayout(this List<Job> jobs)
+        {
+            return jobs.Select(x => x.Payout).Sum();
         }
     }
 }

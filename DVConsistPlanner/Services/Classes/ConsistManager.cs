@@ -1,9 +1,7 @@
 ﻿using DVConsistPlanner.Models;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace DVConsistPlanner.Services
@@ -11,25 +9,63 @@ namespace DVConsistPlanner.Services
     public class ConsistManager : IConsistManager
     {
         List<Consist> _activeConsists;
+        Consist _activeConsist;
         readonly ILogger<ConsistManager> _logger;
+        IDataHandler _dataLoader;
 
-        public ConsistManager(ILogger<ConsistManager> logger)
+        public ConsistManager(ILogger<ConsistManager> logger, IDataHandler dataHandler)
         {
             _logger = logger;
             _activeConsists = new List<Consist>();
+            _activeConsist = new Consist();
+            _dataLoader = dataHandler;
+
+            Initialize();
+        }
+
+        public void Initialize()
+        {
+            _logger.LogDebug("ConsistManager-Loading data...");
+            _activeConsists = _dataLoader.LoadConsists().ToList();
+            if (_activeConsists.Count == 0 )
+            {
+                _activeConsists.Add(new Consist());
+            }
+            SelectActiveConsist(_activeConsists[0].ID);
+
+            _logger.LogDebug("ConsistManager-Initialized");
+        }
+        private void SaveData()
+        {
+            try
+            {
+                _dataLoader.SaveConsists(_activeConsists);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Format("There was an error saving!{0}{1}{2}", Environment.NewLine,
+                    ex.Message, ex.StackTrace));
+            }
         }
 
         #region Consists
-        public Consist ActiveConsist { get; set; }
+        public Consist ActiveConsist { get { return _activeConsist; } }
         public void SelectActiveConsist(int id)
         {
-            ActiveConsist = _activeConsists.GetConsistById(id);
+            _activeConsist = _activeConsists.GetConsistById(id);
         }
 
         public void AddConsist(Consist consist)
         {
-            if (_activeConsists.Contains(consist)) { return; }
+            if (_activeConsists.Contains(consist) || consist == null) 
+                return;
+
             _activeConsists.Add(consist);
+            SaveData();
+        }
+        public Consist GetNewConsist()
+        {
+            return new Consist() { ID = _activeConsists.Count + 1 };
         }
         public void RemoveConsist(int id)
         {
@@ -38,18 +74,22 @@ namespace DVConsistPlanner.Services
             {
                 _activeConsists.Remove(removingConsist);
             }
+            SaveData();
         }
-        public void UpdateConsist(int id, Consist consist)
+        public void UpdateConsist(Consist editedConsist)
         {
-            Consist updatingConsist = _activeConsists.GetConsistById(id);
+            if (editedConsist == null) return;
+
+            Consist updatingConsist = _activeConsists.GetConsistById(editedConsist.ID);
             if (updatingConsist != null)
             {
-                
+                _activeConsists[_activeConsists.IndexOf(updatingConsist)] = editedConsist;
             }
             else
             {
-                _activeConsists.Add(consist);
+                _activeConsists.Add(editedConsist);
             }
+            SaveData();
         }
 
         public Consist GetConsist(int id)
@@ -58,27 +98,11 @@ namespace DVConsistPlanner.Services
         }
         public IEnumerable<Consist> GetConsists()
         {
-            //_activeConsists.Add(DemoData.GetDemoConsist());
-            _activeConsists.Add(LoadConsists());
-            SelectActiveConsist(_activeConsists[0].ID);
-            return _activeConsists;
-        }
-
-        private Consist LoadConsists()
-        {
-            Consist output = new Consist();
-            string filePath = Path.Combine(Environment.CurrentDirectory, "consists.json");
-            if (!File.Exists(filePath))
+            if (_activeConsists.Count == 0)
             {
-                // if the file doesn't exist, create it
-                var jsonData = JsonConvert.SerializeObject(output);
-                File.WriteAllText(filePath, jsonData);
+                _activeConsists.Add(new Consist());
             }
-            // we know the file exists
-            var consistData = File.ReadAllText(filePath);
-            output = JsonConvert.DeserializeObject<Consist>(consistData);
-
-            return output;
+            return _activeConsists;
         }
 
         #endregion
@@ -87,28 +111,42 @@ namespace DVConsistPlanner.Services
 
         public void AddJob(Job job)
         {
-            throw new System.NotImplementedException();
-            //if (ActiveConsist.Jobs.GetJob(job.JobNumber) != null)
-            //{
-            //    _logger.LogWarning("Job is already in the collection.");
-            //}
-            //ActiveConsist.Jobs.Add(job);
+            if (_activeConsist.Jobs.GetJob(job.ID) != null)
+            {
+                _logger.LogWarning("Job is already in the collection.");
+                UpdateJob(job);
+                return;
+            }
+            _activeConsist.Jobs.Add(job);
+            SaveData();
         }
-        public void RemoveJob(int jobNumber)
+        public Job GetNewJob()
         {
-            throw new System.NotImplementedException();
+            return new Job() { ID = _activeConsist.Jobs.Count + 1 };
         }
-        public void UpdateJob(int jobNumber, Job job)
+        public void RemoveJob(int id)
         {
-            throw new System.NotImplementedException();
+            _activeConsist.Jobs.Remove(GetJob(id));
+            SaveData();
         }
-        public Job GetJob(int jobNumber)
+        public void UpdateJob(Job job)
         {
-            throw new System.NotImplementedException();
+            if (job == null) return;
+            
+            Job updatingJob = _activeConsist.Jobs.GetJob(job.ID);
+            if (updatingJob != null)
+            {
+                updatingJob.Update(job);
+            }
+            SaveData();
+        }
+        public Job GetJob(int id)
+        {
+            return _activeConsist.Jobs.GetJob(id);
         }
         public IEnumerable<Job> GetJobs()
         {
-            throw new System.NotImplementedException();
+            return _activeConsist.Jobs;
         }
 
         #endregion
@@ -117,23 +155,34 @@ namespace DVConsistPlanner.Services
 
         public void AddLocomotive(Locomotive loco)
         {
-            throw new System.NotImplementedException();
+            _activeConsist.Locomotives.Add(loco);
+            SaveData();
         }
-        public void RemoveLocomotive(int locomotiveNumber)
+        public Locomotive GetNewLocomotive()
         {
-            throw new System.NotImplementedException();
+            return new Locomotive() { ID = _activeConsist.Locomotives.Count + 1 };
         }
-        public void UpdateLocomotive(int locoNumber, Locomotive locomotive)
+        public void RemoveLocomotive(int id)
         {
-            throw new System.NotImplementedException();
+            _activeConsist.Locomotives.RemoveAll(l => l.ID == id);
+            SaveData();
         }
-        public Locomotive GetLocomotive(int locoNumber)
+        public void UpdateLocomotive(Locomotive locomotive)
         {
-            throw new System.NotImplementedException();
+            Locomotive updatingLoco = _activeConsist.Locomotives.FirstOrDefault(l => l.ID == locomotive.ID);
+            if (updatingLoco != null)
+            {
+                _activeConsist.Locomotives[_activeConsist.Locomotives.IndexOf(updatingLoco)] = locomotive;
+            }
+            SaveData();
+        }
+        public Locomotive GetLocomotive(int id)
+        {
+            return _activeConsist.Locomotives.FirstOrDefault(l => l.ID == id);
         }
         public IEnumerable<Locomotive> GetLocomotives()
         {
-            throw new System.NotImplementedException();
+            return _activeConsist.Locomotives;
         }
 
         #endregion

@@ -1,0 +1,59 @@
+﻿@page
+@model AddLocomotiveModel
+@{
+    ViewData["Title"] = "Add new Locomotive";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/tables.css" />
+</head>
+
+<h1>Add a Locomotive</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <table border="1" style="width:275%">
+                <tr style="text-align:center;">
+                    <th>Classification</th>
+                    <th>Type</th>
+                    <th>Mass (t)</th>
+                    <th>Length (m)</th>
+                    <th>Load Rating (t)</th>
+                </tr>
+                @foreach (DVConsistPlanner.Models.Locomotive loco in Model.Locomotives)
+                {
+                    <tr>
+                        <td>@loco.Classification</td>
+                        <td>@loco.Type</td>
+                        <td style="text-align:center;">@loco.Mass</td>
+                        <td style="text-align:center;">@loco.Length</td>
+                        <td style="text-align:center;">@loco.LoadRating</td>
+                    </tr>
+                }
+            </table>
+            <br />
+
+            <div class="form-group">
+                <label asp-for="SelectedLoco" class="control-label">Choose a loco template:</label>
+                <select asp-for="SelectedLoco" asp-items="Model.LocoSelectList"></select>
+                <span asp-validation-for="SelectedLoco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Loco.LocoNumber" class="control-label">Enter the identification number of the locomotive (i.e. L-042):</label>
+                <input asp-for="Loco.LocoNumber" class="form-control" />
+                <span asp-validation-for="Loco.LocoNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add Locomotive" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/ConsistManager">Back to List</a>
+</div>

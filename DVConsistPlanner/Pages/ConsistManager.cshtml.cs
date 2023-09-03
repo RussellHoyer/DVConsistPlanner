@@ -17,18 +17,25 @@ namespace DVConsistPlanner.Pages
 
         public Consist Consist;
         IConsistManager _consistManager;
-        DVCPContext _context;
 
-        public ConsistManagerModel(ILogger<ConsistManagerModel> logger, IConsistManager consistManager, DVCPContext dVCPContext)
+        public ConsistManagerModel(ILogger<ConsistManagerModel> logger, IConsistManager consistManager)
         {
             _logger = logger;
             _consistManager = consistManager;
-            _context = dVCPContext;
         }
 
         public void OnGet()
         {
-            Consist = _consistManager.GetConsists().FirstOrDefault();
+            Consist = _consistManager.ActiveConsist;
+        }
+
+        public string GetTextColorClass()
+        {
+            if (Consist.TotalTonnage > Consist.Locomotives.GetTotalLoadRating())
+            {
+                return "alarm_color_red";
+            }
+            return "alarm_color_black";
         }
     }
 }

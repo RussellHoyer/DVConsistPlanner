@@ -1,8 +1,17 @@
-﻿body {
-}
-
-table{
+﻿table {
     border: 1px solid black;
     width: 100%;
     font-family: 'Courier New'
+}
+td.alarm_color_red {
+    color: white;
+    background-color: darkred;
+}
+th.alarm_color_red {
+    color: red;
+    background-color: white;
+}
+.alarm_color_black {
+    color: black;
+    background-color: white;
 }

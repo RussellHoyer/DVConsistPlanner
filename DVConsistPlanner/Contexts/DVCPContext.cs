@@ -21,8 +21,6 @@ namespace DVConsistPlanner.Contexts
             _configuration = configuration;
         }
 
-        // The following configures EF to create a Sqlite database file in the
-        // special "local" folder for your platform.
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             DbSettings dbSettings = _configuration.GetSection("DbSettings").Get<DbSettings>();

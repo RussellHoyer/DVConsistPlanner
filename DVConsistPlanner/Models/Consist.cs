@@ -19,23 +19,23 @@ namespace DVConsistPlanner.Models
         [Key]
         public int ID { get; set; }
 
-        public ICollection<Job> Jobs { get; set; }
-        public ICollection<Locomotive> Locomotives { get; set; }
+        public List<Job> Jobs { get; set; }
+        public List<Locomotive> Locomotives { get; set; }
 
         [Precision(18,2)]
         public decimal TotalTonnage
         {
-            get { return Jobs.Select(x => x.TrainMass).Sum(); }
+            get { return Locomotives.GetTotalTonnage() + Jobs.GetTotalTonnage(); }
         }
         [Precision(18, 2)]
         public decimal TotalLength
         {
-            get { return Jobs.Select(x => x.TrainLength).Sum(); }
+            get { return Locomotives.GetTotalLength() + Jobs.GetTotalLength(); }
         }
         public int TotalPayout
         {
-            get { return Jobs.Select(x => x.Payout).Sum(); }
-        }        
+            get { return Jobs.GetTotalPayout(); }
+        }
         public int TotalBonusPayout
         {
             get { return (int)(TotalPayout * 1.5); }

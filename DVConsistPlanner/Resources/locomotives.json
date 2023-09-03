@@ -2,7 +2,7 @@
   {
     "ID": 0,
     "Classification": "DE2",
-    "Name": "DE2:L-000",
+    "TrainID": "L-000",
     "Type": "Diesel-Electric",
     "LicenseCost": 0,
     "Mass": 38,
@@ -12,7 +12,7 @@
   {
     "ID": 1,
     "Classification": "DE6",
-    "Name": "DE6:L-000",
+    "TrainID": "DE6:L-000",
     "Type": "Diesel-Electric",
     "LicenseCost": 200000,
     "Mass": 125,
@@ -22,7 +22,7 @@
   {
     "ID": 2,
     "Classification": "DM3",
-    "Name": "DM3:L-000",
+    "TrainID": "L-000",
     "Type": "Diesel-Mechanical",
     "LicenseCost": 30000,
     "Mass": 52,
@@ -32,7 +32,7 @@
   {
     "ID": 3,
     "Classification": "DH4",
-    "Name": "DH4:L-000",
+    "TrainID": "L-000",
     "Type": "Diesel-Hydraulic",
     "LicenseCost": 50000,
     "Mass": 80,
@@ -42,7 +42,7 @@
   {
     "ID": 4,
     "Classification": "S060",
-    "Name": "S060:L-000",
+    "TrainID": "L-000",
     "Type": "Steam",
     "LicenseCost": 20000,
     "Mass": 45,
@@ -52,7 +52,7 @@
   {
     "ID": 6,
     "Classification": "S282",
-    "Name": "S282:L-000",
+    "TrainID": "L-000",
     "Type": "Steam",
     "LicenseCost": 50000,
     "Mass": 150,

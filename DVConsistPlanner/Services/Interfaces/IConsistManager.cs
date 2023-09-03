@@ -6,24 +6,28 @@ namespace DVConsistPlanner.Services
     public interface IConsistManager
     {
         // Consists
+        Consist ActiveConsist { get; }
         void AddConsist(Consist consist);
+        Consist GetNewConsist();
         void RemoveConsist(int id);
-        void UpdateConsist(int id, Consist consist);
+        void UpdateConsist(Consist consist);
         Consist GetConsist(int id);
         IEnumerable<Consist> GetConsists();
 
         // Jobs
         void AddJob(Job job);
-        void RemoveJob(int jobNumber);
-        void UpdateJob(int jobNumber, Job job);
-        Job GetJob(int jobNumber);
+        Job GetNewJob();
+        void RemoveJob(int id);
+        void UpdateJob(Job job);
+        Job GetJob(int id);
         IEnumerable<Job> GetJobs();
 
         // Locos
         void AddLocomotive(Locomotive loco);
-        void RemoveLocomotive(int locomotiveNumber);
-        void UpdateLocomotive(int locoNumber,  Locomotive locomotive);
-        Locomotive GetLocomotive(int locoNumber);
+        Locomotive GetNewLocomotive();
+        void RemoveLocomotive(int id);
+        void UpdateLocomotive(Locomotive locomotive);
+        Locomotive GetLocomotive(int id);
         IEnumerable<Locomotive> GetLocomotives();
     }
 }

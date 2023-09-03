@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace DVConsistPlanner.Models
 {
@@ -8,11 +10,11 @@ namespace DVConsistPlanner.Models
     {
         public Locomotive()
         {
-            
+
         }
-        public Locomotive(int locoNumber)
+        public Locomotive(int id)
         {
-            LocoNumber = locoNumber;
+            ID = id;
         }
         /// <summary>
         /// Index identification.
@@ -58,6 +60,38 @@ namespace DVConsistPlanner.Models
         /// The display name for the locomotive.
         /// </summary>
         [NotMapped]
-        public string Name => $"L-{LocoNumber:D3}";
+        public string TrainID => $"L-{LocoNumber:D3}";
+
+        /// <summary>
+        /// Copy all non-field property values from the parameter object to this object (<see cref="ID"/>, <see cref="ConsistID"/>, and <see cref="LocoNumber"/> are not copied).
+        /// </summary>
+        /// <param name="fromLoco"></param>
+        public void CopyFrom(Locomotive fromLoco)
+        {
+            if (fromLoco == null) return;
+
+            Classification = fromLoco.Classification;
+            Type = fromLoco.Type;
+            LicenseCost = fromLoco.LicenseCost;
+            Mass = fromLoco.Mass;
+            Length = fromLoco.Length;
+            LoadRating = fromLoco.LoadRating;
+        }
+    }
+    // Locomotive specific extensions
+    public static partial class Extensions
+    {
+        public static int GetTotalTonnage(this List<Locomotive> locomotives)
+        {
+            return locomotives.Select(l => l.Mass).Sum();
+        }
+        public static decimal GetTotalLength(this List<Locomotive> locomotives)
+        {
+            return locomotives.Select(l => l.Length).Sum();
+        }
+        public static int GetTotalLoadRating(this List<Locomotive> locomotives)
+        {
+            return locomotives.Select(l => l.LoadRating).Sum();
+        }
     }
 }

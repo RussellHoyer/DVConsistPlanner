@@ -1,20 +1,22 @@
 ﻿@page
+@using DVConsistPlanner.Models;
 @model DVConsistPlanner.Pages.ConsistManagerModel
 @{
     ViewData["Title"] = "Consist Manager";
 }
-
 <head>
     <link rel="stylesheet" href="~/css/tables.css" />
 </head>
-
 <div class="text-center">
     <h1 class="display-4">Consist Manager</h1>
     <br />
 
-    <h3>Locomotive Consist</h3>
+    <div class="d-sm-inline-flex">
+        <h3>Locomotive Consist</h3><a class="nav-link" asp-area="" asp-page="/Locomotives/AddLocomotive">Add Locomotive</a>
+    </div>
+
     <table border="1">
-        <tr>
+        <tr style="background-color:beige">
             <th>Identification</th>
             <th>Classification</th>
             <th>Type</th>
@@ -25,20 +27,36 @@
         @foreach (DVConsistPlanner.Models.Locomotive loco in Model.Consist.Locomotives)
         {
             <tr>
-                <td>@loco.Name</td>
+                <td>@loco.TrainID</td>
                 <td>@loco.Classification</td>
                 <td>@loco.Type</td>
-                <td>@loco.Mass</td>
-                <td>@loco.Length</td>
-                <td>@loco.LoadRating</td>
+                <td>@String.Format("{0:N2}", loco.Mass)</td>
+                <td>@String.Format("{0:N2}", loco.Length)</td>
+                <td>@String.Format("{0:N2}", loco.LoadRating)</td>
             </tr>
         }
     </table>
+
+    <table>
+        <tr>
+            <th>Total Mass (t)</th>
+            <th>Total Length (m)</th>
+            <th>Total Load Rating (t)</th>
+        </tr>
+        <tr>
+            <td>@String.Format("{0:N2}", Model.Consist.Locomotives.GetTotalTonnage())</td>
+            <td>@String.Format("{0:N2}", Model.Consist.Locomotives.GetTotalLength())</td>
+            <td>@String.Format("{0:N2}", Model.Consist.Locomotives.GetTotalLoadRating())</td>
+        </tr>
+    </table>
     <br />
 
-    <h3>Train Consist</h3>
+    <div class="d-sm-inline-flex">
+        <h3>Train Consist</h3><a class="nav-link" asp-area="" asp-page="/Jobs/AddJob">Add Job</a>
+    </div>
+
     <table border="1">
-        <tr>
+        <tr style="background-color:beige">
             <th>Job Name</th>
             <th>Departing Station</th>
             <th>Arriving Station</th>
@@ -50,7 +68,7 @@
         @foreach (DVConsistPlanner.Models.Job job in Model.Consist.Jobs)
         {
             <tr>
-                <td>@job.JobName</td>
+                <td><a asp-page="/Jobs/EditJob" asp-route-id="@job.ID">@job.JobName</a></td>
                 <td>@job.Departing.Name</td>
                 <td>@job.Arriving.Name</td>
                 <td>@job.TrainMass</td>
@@ -60,9 +78,7 @@
             </tr>
         }
     </table>
-    <br />
 
-    <h1>Totals</h1>
     <table>
         <tr>
             <th>Total Mass (tonnes)</th>
@@ -71,10 +87,25 @@
             <th>Total Payout (w/Bonus)</th>
         </tr>
         <tr>
-            <td>@Model.Consist.TotalTonnage</td>
-            <td>@Model.Consist.TotalLength</td>
+            <td>@String.Format("{0:N2}", Model.Consist.Jobs.GetTotalTonnage())</td>
+            <td>@String.Format("{0:N2}", Model.Consist.Jobs.GetTotalLength())</td>
             <td>@String.Format("{0:C2}", Model.Consist.TotalPayout)</td>
             <td>@String.Format("{0:C2}", Model.Consist.TotalBonusPayout)</td>
+        </tr>
+    </table>
+    <br />
+
+    <h2>Consist Totals</h2>
+    <table>
+        <tr>
+            <th>Total Mass (t)</th>
+            <th class="@Model.GetTextColorClass()">Total Load Rating (t)</th>
+            <th>Total Length (m)</th>
+        </tr>
+        <tr>
+            <td>@String.Format("{0:N2}", Model.Consist.TotalTonnage)</td>
+            <td class ="@Model.GetTextColorClass()">@String.Format("{0:N2}", Model.Consist.Locomotives.GetTotalLoadRating())</td>
+            <td>@String.Format("{0:N2}", Model.Consist.TotalLength)</td>
         </tr>
     </table>
 

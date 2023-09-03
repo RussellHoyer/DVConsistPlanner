@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,14 +23,17 @@ namespace DVConsistPlanner.Models
         /// <summary>
         /// Services available at this station.
         /// </summary>
+        [JsonIgnore]
         public ICollection<string> Services { get; set; }
         /// <summary>
         /// Track names located at this station.
         /// </summary>
+        [JsonIgnore]
         public ICollection<string> Tracks { get; set; }
         /// <summary>
         /// Yard descriptions.
         /// </summary>
+        [JsonIgnore]
         public ICollection<string> YardLegend { get; set; }
     }
 }
