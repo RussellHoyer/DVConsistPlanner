@@ -1,5 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -129,9 +128,9 @@ namespace DVConsistPlanner.Models
         /// <param name="jobList"></param>
         /// <param name="id"></param>
         /// <returns>Returns the desired <see cref="Job"/> if found, otherwise returns null.</returns>
-        public static Job? GetJob(this List<Job> jobList, int id)
+        public static Job GetJob(this List<Job> jobList, int id)
         {
-            return jobList.FirstOrDefault(j => j.ID == id);
+            return jobList.First(j => j.ID == id);
         }
         /// <summary>
         /// Gets the abbreviation for the <see cref="JobType"/> (usually to be used for display purposes).

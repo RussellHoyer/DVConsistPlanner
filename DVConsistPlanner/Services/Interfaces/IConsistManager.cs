@@ -9,6 +9,7 @@ namespace DVConsistPlanner.Services
         Consist ActiveConsist { get; }
         void AddConsist(Consist consist);
         Consist GetNewConsist();
+        void ResetConsist();
         void RemoveConsist(int id);
         void UpdateConsist(Consist consist);
         Consist GetConsist(int id);

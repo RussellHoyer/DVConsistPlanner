@@ -29,7 +29,15 @@ namespace DVConsistPlanner.Pages
             Consist = _consistManager.ActiveConsist;
         }
 
-        public string GetTextColorClass()
+        public IActionResult OnGetClearConsist()
+        {
+            Consist = _consistManager.ActiveConsist;
+            _consistManager.ResetConsist();
+
+            return Page();
+        }
+
+        public string GetAlertClassLoadRating()
         {
             if (Consist.TotalTonnage > Consist.Locomotives.GetTotalLoadRating())
             {

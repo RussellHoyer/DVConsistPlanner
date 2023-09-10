@@ -67,6 +67,11 @@ namespace DVConsistPlanner.Services
         {
             return new Consist() { ID = _activeConsists.Count + 1 };
         }
+        public void ResetConsist()
+        {
+            _activeConsist.Jobs = new List<Job>() { GetNewJob() };
+            _activeConsist.Locomotives = new List<Locomotive>() { GetNewLocomotive() };
+        }
         public void RemoveConsist(int id)
         {
             Consist removingConsist = _activeConsists.GetConsistById(id);
@@ -132,11 +137,12 @@ namespace DVConsistPlanner.Services
         public void UpdateJob(Job job)
         {
             if (job == null) return;
-            
+
             Job updatingJob = _activeConsist.Jobs.GetJob(job.ID);
             if (updatingJob != null)
             {
-                updatingJob.Update(job);
+                _activeConsist.Jobs[_activeConsist.Jobs.IndexOf(updatingJob)] = job;
+                //updatingJob.Update(job);
             }
             SaveData();
         }

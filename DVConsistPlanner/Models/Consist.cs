@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace DVConsistPlanner.Models
@@ -18,6 +17,7 @@ namespace DVConsistPlanner.Models
         }
         [Key]
         public int ID { get; set; }
+        public string DisplayName { get; set; }
 
         public List<Job> Jobs { get; set; }
         public List<Locomotive> Locomotives { get; set; }

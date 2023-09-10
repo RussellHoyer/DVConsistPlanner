@@ -29,7 +29,7 @@ namespace DVConsistPlanner
         {
             services.AddRazorPages();
 
-            services.AddSingleton<IConsistManager, ConsistManager>();
+            services.AddScoped<IConsistManager, ConsistManager>();
             services.AddTransient<IDataHandler, FileDataLoader>();
 
             //services.AddDbContext<DVCPContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DVCPContext")));

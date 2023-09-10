@@ -50,6 +50,7 @@ namespace DVConsistPlanner.Pages.Jobs
                 return NotFound();
             }
             Job = editingJob;
+
             DepartingStationAbbrev = Job.Departing.Abbreviation;
             ArrivingStationAbbrev = Job.Arriving.Abbreviation;
 
@@ -67,7 +68,6 @@ namespace DVConsistPlanner.Pages.Jobs
             Job.Arriving = DerailValleyData.Stations.GetStationByAbbrev(ArrivingStationAbbrev);
 
             _consistManager.UpdateJob(Job);
-
             return RedirectToPage("../ConsistManager");
         }
     }

@@ -36,8 +36,7 @@ namespace DVConsistPlanner.Services.Classes
 
         public IEnumerable<Consist> LoadConsists()
         {
-            List<Consist> output = JsonConvert.DeserializeObject<List<Consist>>(LoadJson(_filepath_Consists));
-            return output ?? new();
+            return JsonConvert.DeserializeObject<List<Consist>>(LoadJson(_filepath_Consists));
         }
         public void SaveConsists(IEnumerable<Consist> consists)
         {
@@ -46,8 +45,7 @@ namespace DVConsistPlanner.Services.Classes
 
         public IEnumerable<Job> LoadJobs()
         {
-            List<Job> output = JsonConvert.DeserializeObject<List<Job>>(LoadJson(_filepath_Jobs));
-            return output ?? new();
+            return JsonConvert.DeserializeObject<List<Job>>(LoadJson(_filepath_Jobs));
         }
         public void SaveJobs(IEnumerable<Job> jobs)
         {
@@ -56,8 +54,7 @@ namespace DVConsistPlanner.Services.Classes
 
         public IEnumerable<License> LoadLicenses()
         {
-            List<License> output = JsonConvert.DeserializeObject<List<License>>(LoadJson(_filepath_Licenses));
-            return output ?? new();
+            return JsonConvert.DeserializeObject<List<License>>(LoadJson(_filepath_Licenses));
         }
         public void SaveLicenses(IEnumerable<License> licenses)
         {
@@ -66,8 +63,7 @@ namespace DVConsistPlanner.Services.Classes
 
         public IEnumerable<Locomotive> LoadLocomotives()
         {
-            List<Locomotive> output = JsonConvert.DeserializeObject<List<Locomotive>>(LoadJson(_filepath_Locos));
-            return output ?? new();
+            return JsonConvert.DeserializeObject<List<Locomotive>>(LoadJson(_filepath_Locos));
         }
         public void SaveLocomotives(IEnumerable<Locomotive> locomotives)
         {
@@ -76,8 +72,7 @@ namespace DVConsistPlanner.Services.Classes
 
         public IEnumerable<Station> LoadStations()
         {
-            List<Station> output = JsonConvert.DeserializeObject<List<Station>>(LoadJson(_filepath_Stations));
-            return output ?? new();
+            return JsonConvert.DeserializeObject<List<Station>>(LoadJson(_filepath_Stations));
         }
         public void SaveStations(IEnumerable<Station> stations)
         {

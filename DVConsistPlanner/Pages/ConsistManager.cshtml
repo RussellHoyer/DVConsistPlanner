@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="~/css/tables.css" />
 </head>
 <div class="text-center">
-    <h1 class="display-4">Consist Manager</h1>
+    <h1 class="display-4 d-sm-inline-flex">Consist Manager</h1>
+    <a asp-page-handler="ClearConsist">Reset Consist</a>
     <br />
 
     <div class="d-sm-inline-flex">
@@ -99,12 +100,12 @@
     <table>
         <tr>
             <th>Total Mass (t)</th>
-            <th class="@Model.GetTextColorClass()">Total Load Rating (t)</th>
+            <th class="@Model.GetAlertClassLoadRating()">Total Load Rating (t)</th>
             <th>Total Length (m)</th>
         </tr>
         <tr>
             <td>@String.Format("{0:N2}", Model.Consist.TotalTonnage)</td>
-            <td class ="@Model.GetTextColorClass()">@String.Format("{0:N2}", Model.Consist.Locomotives.GetTotalLoadRating())</td>
+            <td class ="@Model.GetAlertClassLoadRating()">@String.Format("{0:N2}", Model.Consist.Locomotives.GetTotalLoadRating())</td>
             <td>@String.Format("{0:N2}", Model.Consist.TotalLength)</td>
         </tr>
     </table>
