@@ -99,14 +99,16 @@ namespace DVConsistPlanner.Services
 
         public Consist GetConsist(int id)
         {
-            return _activeConsists.GetConsistById(id);
+            Consist foundConsist;
+            foundConsist = _activeConsists.GetConsistById(id);
+            if (foundConsist == null) return new();
+
+            SelectActiveConsist(foundConsist.ID);
+            return foundConsist;
         }
         public IEnumerable<Consist> GetConsists()
         {
-            if (_activeConsists.Count == 0)
-            {
-                _activeConsists.Add(new Consist());
-            }
+            Initialize();
             return _activeConsists;
         }
 
@@ -142,7 +144,6 @@ namespace DVConsistPlanner.Services
             if (updatingJob != null)
             {
                 _activeConsist.Jobs[_activeConsist.Jobs.IndexOf(updatingJob)] = job;
-                //updatingJob.Update(job);
             }
             SaveData();
         }

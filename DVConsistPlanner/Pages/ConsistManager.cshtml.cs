@@ -24,9 +24,17 @@ namespace DVConsistPlanner.Pages
             _consistManager = consistManager;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            Consist = _consistManager.ActiveConsist;
+            //Consist = _consistManager.ActiveConsist;
+            if (id == null) return BadRequest();
+            Consist = _consistManager.GetConsist((int)id);
+            if (Consist == null)
+            {
+                return NotFound();
+            }
+
+            return Page();
         }
 
         public IActionResult OnGetClearConsist()

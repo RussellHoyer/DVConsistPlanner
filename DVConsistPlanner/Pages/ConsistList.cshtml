@@ -1,0 +1,39 @@
+﻿@page
+@using DVConsistPlanner.Models;
+@model DVConsistPlanner.Pages.ConsistListModel
+@{
+    ViewData["Title"] = "Consist List";
+}
+<head>
+    <link rel="stylesheet" href="~/css/tables.css" />
+</head>
+<div class="text-center">
+    <h1 class="display-4 d-sm-inline-flex">Consist List</h1>
+    <br />
+
+    <table border="1">
+        <tr style="background-color:beige">            
+            <th>Display Name</th>
+            <th>Total Jobs</th>
+            <th>Total Payout</th>
+            <th>Total Length</th>
+            <th>Total Tonnage</th>
+            <th>Total Locomotives</th>
+            <th>Total Load Rating</th>
+        </tr>
+        @foreach (DVConsistPlanner.Models.Consist cons in Model.Consists)
+        {
+            <tr>
+                <td><a asp-page="/ConsistManager" asp-route-id="@cons.ID">@cons.DisplayName</a></td>
+                <td>@String.Format("{0:N2}", cons.Jobs.Count())</td>
+                <td>@String.Format("{0:C2}", cons.TotalPayout)</td>
+                <td>@String.Format("{0:N2}", cons.TotalLength)</td>
+                <td>@String.Format("{0:N2}", cons.TotalTonnage)</td>
+                <td>@String.Format("{0:N2}", cons.Locomotives.Count())</td>
+                <td>@String.Format("{0:N2}", cons.Locomotives.GetTotalLoadRating())</td>
+            </tr>
+        }
+    </table>
+    <br />
+
+</div>

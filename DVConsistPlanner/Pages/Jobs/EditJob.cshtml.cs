@@ -68,7 +68,7 @@ namespace DVConsistPlanner.Pages.Jobs
             Job.Arriving = DerailValleyData.Stations.GetStationByAbbrev(ArrivingStationAbbrev);
 
             _consistManager.UpdateJob(Job);
-            return RedirectToPage("../ConsistManager");
+            return RedirectToPage("../ConsistManager", new { id = Job.ConsistID });
         }
     }
 }

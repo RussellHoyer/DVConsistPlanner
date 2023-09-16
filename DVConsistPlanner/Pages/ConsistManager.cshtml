@@ -28,7 +28,7 @@
         @foreach (DVConsistPlanner.Models.Locomotive loco in Model.Consist.Locomotives)
         {
             <tr>
-                <td>@loco.TrainID</td>
+                <td><a asp-page="/Locomotives/EditLocomotive" asp-route-id="@loco.ID">@loco.TrainID</a></td>
                 <td>@loco.Classification</td>
                 <td>@loco.Type</td>
                 <td>@String.Format("{0:N2}", loco.Mass)</td>

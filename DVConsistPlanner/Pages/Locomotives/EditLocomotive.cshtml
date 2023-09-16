@@ -1,0 +1,57 @@
+﻿@page
+@model DVConsistPlanner.Pages.Locomotives.EditLocomotiveModel
+@{
+    ViewData["Title"] = "Edit Locomotive";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/tables.css" />
+</head>
+
+<h1>Edit Locomotive</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Loco.ID" class="form-control" />
+            <input type="hidden" asp-for="Loco.ConsistID" class="form-control" />
+
+            <table border="1" style="width:275%">
+                <tr style="text-align:center;">
+                    <th>Train ID</th>
+                    <th>Loco Number</th>
+                    <th>Classification</th>
+                    <th>Type</th>
+                    <th>Mass (t)</th>
+                    <th>Length (m)</th>
+                    <th>Load Rating (t)</th>
+                </tr>
+                <tr>
+                    <td>@Model.Loco.TrainID</td>
+                    <td>
+                        <div class="form-group">
+                            <input asp-for="Loco.LocoNumber" class="form-control" />
+                            <span asp-validation-for="Loco.LocoNumber" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>@Model.Loco.Classification</td>
+                    <td>@Model.Loco.Type</td>
+                    <td style="text-align:center;">@Model.Loco.Mass</td>
+                    <td style="text-align:center;">@Model.Loco.Length</td>
+                    <td style="text-align:center;">@Model.Loco.LoadRating</td>
+                </tr>
+            </table>
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/ConsistManager" asp-route-id="@Model.Loco.ConsistID">Back to List</a>
+</div>
