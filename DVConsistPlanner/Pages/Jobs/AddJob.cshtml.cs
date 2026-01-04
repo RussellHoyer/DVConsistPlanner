@@ -54,7 +54,7 @@ namespace DVConsistPlanner.Pages.Jobs
 
             _consistManager.AddJob(Job);
 
-            return RedirectToPage("./ConsistManager");
+            return RedirectToPage("../ConsistManager", new { id = Job.ConsistID });
 
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace DVConsistPlanner.Configs
+﻿namespace DVConsistPlanner.wwwroot.Configs
 {
     public class DbSettings
     {

@@ -13,6 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="wwwroot\Configs\AppSettings.cs" />
+    <Compile Include="wwwroot\Configs\DbSettings.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Resources\locomotives.json" />
     <EmbeddedResource Include="Resources\stations.json" />
   </ItemGroup>

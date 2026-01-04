@@ -25,6 +25,7 @@ namespace DVConsistPlanner.Pages.Locomotives
 
         [BindProperty]
         public Locomotive Loco { get; set; }
+
         [BindProperty]
         public string SelectedLoco { get; set; }
 
@@ -52,7 +53,7 @@ namespace DVConsistPlanner.Pages.Locomotives
             Loco.ConsistID = _consistManager.ActiveConsist.ID;
             _consistManager.AddLocomotive(Loco);
 
-            return RedirectToPage("./ConsistManager");
+            return RedirectToPage("../ConsistManager", new { id = Loco.ConsistID });
 
         }
     }

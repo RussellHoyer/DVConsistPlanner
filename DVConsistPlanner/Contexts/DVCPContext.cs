@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
 using DVConsistPlanner.Models;
-using DVConsistPlanner.Configs;
+using DVConsistPlanner.wwwroot.Configs;
 
 namespace DVConsistPlanner.Contexts
 {
