@@ -1,0 +1,23 @@
+@using DVConsistPlanner.Models
+@model List<DVConsistPlanner.Models.Job>
+
+<div class="table-responsive">
+    <table class="table table-sm table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Total Mass (t)</th>
+                <th>Total Length (m)</th>
+                <th>Total Payout</th>
+                <th>Total Payout (w/Bonus)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align:center;">@String.Format("{0:N2}", Model?.GetTotalTonnage() ?? 0)</td>
+                <td style="text-align:center;">@String.Format("{0:N2}", Model?.GetTotalLength() ?? 0)</td>
+                <td style="text-align:center;">@String.Format("{0:C2}", Model?.GetTotalPayout() ?? 0)</td>
+                <td style="text-align:center;">@String.Format("{0:C2}", (Model?.GetTotalPayout() ?? 0) * 1.5)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

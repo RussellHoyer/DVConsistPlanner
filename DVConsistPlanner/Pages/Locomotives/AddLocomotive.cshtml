@@ -28,9 +28,9 @@
                     <tr>
                         <td>@loco.Classification</td>
                         <td>@loco.Type</td>
-                        <td style="text-align:center;">@loco.Mass</td>
-                        <td style="text-align:center;">@loco.Length</td>
-                        <td style="text-align:center;">@loco.LoadRating</td>
+                        <td style="text-align:center;">@String.Format("{0:N2}", loco.Mass)</td>
+                        <td style="text-align:center;">@String.Format("{0:N2}", loco.Length)</td>
+                        <td style="text-align:center;">@String.Format("{0:N2}", loco.LoadRating)</td>
                     </tr>
                 }
             </table>

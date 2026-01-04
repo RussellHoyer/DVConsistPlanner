@@ -1,0 +1,21 @@
+@using DVConsistPlanner.Models
+@model List<DVConsistPlanner.Models.Locomotive>
+
+<div class="table-responsive">
+    <table class="table table-sm table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Total Mass (t)</th>
+                <th>Total Length (m)</th>
+                <th>Total Load Rating (t)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align:center;">@String.Format("{0:N2}", Model?.GetTotalTonnage() ?? 0)</td>
+                <td style="text-align:center;">@String.Format("{0:N2}", Model?.GetTotalLength() ?? 0)</td>
+                <td style="text-align:center;">@String.Format("{0:N2}", Model?.GetTotalLoadRating() ?? 0)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

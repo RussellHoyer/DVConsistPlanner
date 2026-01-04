@@ -45,6 +45,44 @@ namespace DVConsistPlanner.Pages
             return Page();
         }
 
+        public IActionResult OnGetDeleteLocomotive(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            var locomotive = _consistManager.GetLocomotive((int)id);
+            if (locomotive == null)
+            {
+                return NotFound();
+            }
+
+            var consistId = locomotive.ConsistID;
+            _consistManager.RemoveLocomotive((int)id);
+
+            return RedirectToPage(new { id = consistId });
+        }
+
+        public IActionResult OnGetDeleteJob(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            var job = _consistManager.GetJob((int)id);
+            if (job == null)
+            {
+                return NotFound();
+            }
+
+            var consistId = job.ConsistID;
+            _consistManager.RemoveJob((int)id);
+
+            return RedirectToPage(new { id = consistId });
+        }
+
         public string GetAlertClassLoadRating()
         {
             if (Consist.TotalTonnage > Consist.Locomotives.GetTotalLoadRating())
