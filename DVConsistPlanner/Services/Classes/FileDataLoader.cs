@@ -36,7 +36,10 @@ namespace DVConsistPlanner.Services.Classes
 
         public IEnumerable<Consist> LoadConsists()
         {
-            return JsonConvert.DeserializeObject<List<Consist>>(LoadJson(_filepath_Consists));
+            var json = LoadJson(_filepath_Consists);
+            return string.IsNullOrWhiteSpace(json) 
+                ? new List<Consist>() 
+                : JsonConvert.DeserializeObject<List<Consist>>(json) ?? new List<Consist>();
         }
         public void SaveConsists(IEnumerable<Consist> consists)
         {
